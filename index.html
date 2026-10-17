@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>FIELDNOTES — Seattle Interactive City Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="scene"></canvas>
+    <div id="labels"></div>
+    <div id="fallback" class="fallback hidden">
+      <div class="fallback-card">
+        <h2>WebGL unavailable</h2>
+        <p>This experience requires a browser with WebGL support. Please try a modern browser.</p>
+      </div>
+    </div>
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-name">FIELDNOTES</span>
+        <span class="brand-sub">INTERACTIVE CITY ATLAS</span>
+      </div>
+      <div class="topright">
+        <span class="tr-line">PACIFIC NORTHWEST</span>
+        <span class="tr-line">01 / SEATTLE</span>
+      </div>
+    </header>
+
+    <!-- Left intro -->
+    <section class="intro">
+      <div class="coord"><span class="dot"></span>47.6062° N  122.3321° W</div>
+      <h1 class="title">Seattle</h1>
+      <p class="subtitle">A city in perspective.</p>
+      <p class="copy">Between the water and the mountains. A little world, made to wander.</p>
+    </section>
+
+    <!-- Viewpoint selector -->
+    <div class="viewselector" role="tablist" aria-label="Viewpoints">
+      <button class="vs-btn active" data-view="city">City view</button>
+      <button class="vs-btn" data-view="needle">Space Needle</button>
+      <button class="vs-btn" data-view="waterfront">Waterfront</button>
+      <button class="vs-btn" data-view="downtown">Downtown</button>
+    </div>
+
+    <!-- Info panel -->
+    <aside class="infopanel" aria-live="polite">
+      <div class="ip-eyebrow">THE EMERALD CITY</div>
+      <h2 class="ip-heading">Land, sea &amp; skyline</h2>
+      <p class="ip-desc">Orbit a miniature Seattle, from the Space Needle to the piers of Elliott Bay.</p>
+      <div class="ip-footer">
+        <span class="ip-num">01 — CITY OVERVIEW</span>
+        <span class="ip-arrow">→</span>
+      </div>
+    </aside>
+
+    <!-- Compass -->
+    <div class="compass" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="48" height="48">
+        <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        <g class="compass-needle">
+          <polygon points="24,6 27,24 24,22 21,24" fill="currentColor"/>
+          <polygon points="24,42 21,24 24,26 27,24" fill="currentColor" opacity="0.4"/>
+        </g>
+        <text x="24" y="12" text-anchor="middle" font-size="8" fill="currentColor" font-weight="600">N</text>
+      </svg>
+    </div>
+
+    <!-- Bottom toolbar -->
+    <footer class="toolbar">
+      <button class="tb-btn" id="btnOrbit" aria-pressed="false" title="Auto-orbit">Orbit</button>
+      <button class="tb-btn" id="btnDay" aria-pressed="false" title="Daylight/Dusk">Dusk</button>
+      <button class="tb-btn" id="btnZoomOut" title="Zoom out">−</button>
+      <button class="tb-btn" id="btnZoomIn" title="Zoom in">+</button>
+      <button class="tb-btn" id="btnReset" title="Reset view">Reset</button>
+    </footer>
+
+    <div class="hint">Drag to orbit · Scroll to zoom.  ·  An artistic interpretation · Not to scale.</div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/three.module.js",
+      "three/addons/": "./vendor/three/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
